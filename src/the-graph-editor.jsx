@@ -18,8 +18,6 @@
                 width : this.props.nodeWidth, height: this.props.nodeHeight
             })
             var nodes = this.props.data.app.graph.nodes.map(function(node) {
-                console.log("NODE => ");
-                console.log(node);
                 return (
                     <TheGraph.factories.node data={node} />
                 );
