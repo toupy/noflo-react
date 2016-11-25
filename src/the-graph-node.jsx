@@ -1,25 +1,26 @@
+import React from 'react';
+import SVGTools from './tools/factories/svg/SVGFactory';
+import Tools, { merge }from './tools/Tools';
+import nodeConfig, { nodeSize }from './graph/node/NodeConfig';
+
+
 (function(context) {
     "use strict";
 
     var TheGraph = context.TheGraph;
-
-    TheGraph.config.nodeSize = {
-        defaultNodeRadius: 8,
-        defaultNodeSize: 72,
-    }
 
     TheGraph.config.node = {
         background: {
             className: "node-bg"
         },
         border: {
-            rx: TheGraph.config.nodeSize.defaultNodeRadius,
-            ry: TheGraph.config.nodeSize.defaultNodeRadius,
+            rx: nodeSize.defaultNodeRadius,
+            ry: nodeSize.defaultNodeRadius,
             className: "node-border drag"
         },
         innerRect: {
-            rx: TheGraph.config.nodeSize.defaultNodeRadius - 2,
-            ry: TheGraph.config.nodeSize.defaultNodeRadius - 2,
+            rx: nodeSize.defaultNodeRadius - 2,
+            ry: nodeSize.defaultNodeRadius - 2,
             x: 3,
             y: 3,
             className: "node-rect drag"
@@ -53,15 +54,15 @@
     };
 
     TheGraph.factories.node = {
-        createNodeGroup: TheGraph.factories.createGroup,
-        
+        createNodeGroup: SVGTools.createGroup,
+
     };
 
     TheGraph.factories.node = React.createClass({
         getDefaultProps: function() {
             return {
-                nodeWidth: TheGraph.config.nodeSize.defaultNodeSize,
-                nodeHeight: TheGraph.config.nodeSize.defaultNodeSize,
+                nodeWidth: nodeSize.defaultNodeSize,
+                nodeHeight: nodeSize.defaultNodeSize,
                 main: {
                     className: "node drag",
                     x: 10,
@@ -91,13 +92,13 @@
             /**
              * initialisation du module
              */
-            var backgroundRectOptions = TheGraph.merge(TheGraph.config.node.background, {
+            var backgroundRectOptions = merge(TheGraph.config.node.background, {
                 width : this.props.nodeWidth, height: this.props.nodeHeight + 25
             });
-            var borderRectOptions = TheGraph.merge(TheGraph.config.node.border, {
+            var borderRectOptions = merge(TheGraph.config.node.border, {
                 width : this.props.nodeWidth, height: this.props.nodeHeight
             })
-            var innerRectOptions = TheGraph.merge(TheGraph.config.node.innerRect ,{
+            var innerRectOptions = merge(TheGraph.config.node.innerRect ,{
                 width : this.props.nodeWidth - 6, height: this.props.nodeHeight - 6
             });
 
@@ -105,16 +106,16 @@
              *  Création du cadre
              */
             var nodePosition = "translate(" + this.props.data.x + ", " + this.props.data.y + ")";
-            var backgroundRect = TheGraph.factories.svg.Rectangle(backgroundRectOptions);
-            var innerRect = TheGraph.factories.svg.Rectangle(innerRectOptions);
-            var borderRect = TheGraph.factories.svg.Rectangle(borderRectOptions);
+            var backgroundRect = SVGTools.Rectangle(backgroundRectOptions);
+            var innerRect = SVGTools.Rectangle(innerRectOptions);
+            var borderRect = SVGTools.Rectangle(borderRectOptions);
 
             /**
              * @TODO valoriseer ce qui suit
              */
-            var nodeIcon = TheGraph.factories.svg.Text(this.props.innerRect);
-            var nodeLabelBackground = TheGraph.factories.svg.Rectangle(this.props.nodeLabelbackground.textBackgroundRect);
-            var labelText = TheGraph.factories.svg.Text(this.props.nodeLabelbackground.nodeLabel);
+            var nodeIcon = SVGTools.Text(this.props.innerRect);
+            var nodeLabelBackground = SVGTools.Rectangle(this.props.nodeLabelbackground.textBackgroundRect);
+            var labelText = SVGTools.Text(this.props.nodeLabelbackground.nodeLabel);
 
             return (
                 <g className={this.props.main.className} transform={nodePosition}>
