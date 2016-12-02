@@ -8,12 +8,15 @@ import NodeBase from './base/NodeBase.jsx';
      * @returns {{connectDragSource: *, isDragging: *, connectDragPreview: *}}
      */
     function collect(monitor) {
-        var dragPosition = monitor.getDifferenceFromInitialOffset();
-        // console.log(dragPosition);
+        console.log(monitor.getInitialClientOffset());
+        console.log(monitor.getInitialSourceClientOffset());
+        console.log(monitor.getClientOffset());
+        console.log(monitor.getDifferenceFromInitialOffset());
+        console.log(monitor.getSourceClientOffset());
         return {
             item: monitor.getItem(),
             itemType: monitor.getItemType(),
-            initialOffset: monitor.getInitialSourceClientOffset(),
+            initialOffset: monitor.getInitialClientOffset(),
             currentOffset: monitor.getSourceClientOffset(),
             isDragging: monitor.isDragging()
         };
@@ -23,7 +26,6 @@ import NodeBase from './base/NodeBase.jsx';
      */
     class NodeDragLayer extends Component{
         render() {
-            console.log('render');
             var options = {
                 label: "GHOST",
                 sublabel: "in the SHELL",
@@ -35,9 +37,6 @@ import NodeBase from './base/NodeBase.jsx';
 
             const { item, itemType, isDragging } = this.props;
             const { initialOffset, currentOffset } = this.props;
-
-            console.log(initialOffset);
-            console.log(currentOffset);
 
             if (!isDragging) {
                 return null;
