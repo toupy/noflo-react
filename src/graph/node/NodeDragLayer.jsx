@@ -1,23 +1,53 @@
 import React, { Component, PropTypes } from 'react';
 import { DragLayer } from 'react-dnd';
 import NodeBase from './base/NodeBase.jsx';
+
     /**
      *
-     * @param connect
      * @param monitor
-     * @returns {{connectDragSource: *, isDragging: *, connectDragPreview: *}}
+     * @returns {{item, itemType, initialOffset, currentOffset: *, isDragging: *}}
      */
     function collect(monitor) {
-        console.log(monitor.getInitialClientOffset());
-        console.log(monitor.getInitialSourceClientOffset());
-        console.log(monitor.getClientOffset());
-        console.log(monitor.getDifferenceFromInitialOffset());
-        console.log(monitor.getSourceClientOffset());
+        var clientOffset = monitor.getClientOffset();
+        // console.log(clientOffset);
+        if(clientOffset !== null) {
+            // console.log(document.elementFromPoint(clientOffset.x, clientOffset.y));
+        }
+        // console.log('-------------------------------------------------------------');
+        // console.log('monitor.getInitialClientOffset()');
+        // console.log(monitor.getInitialClientOffset());
+        // console.log('monitor.getInitialSourceClientOffset()');
+        // console.log(monitor.getInitialSourceClientOffset());
+        // console.log('monitor.getClientOffset()');
+        // console.log(monitor.getClientOffset());
+        // console.log('monitor.getDifferenceFromInitialOffset()');
+        // console.log(monitor.getDifferenceFromInitialOffset());
+        // console.log('monitor.getSourceClientOffset()');
+        // console.log(monitor.getSourceClientOffset());
+        // console.log('-------------------------------------------------------------');
         return {
             item: monitor.getItem(),
             itemType: monitor.getItemType(),
-            initialOffset: monitor.getInitialClientOffset(),
-            currentOffset: monitor.getSourceClientOffset(),
+            /**
+             *
+             */
+            initialClientOffset: monitor.getInitialClientOffset(),
+            /**
+             *
+             */
+            initialSourceClientOffset: monitor.getInitialSourceClientOffset(),
+            /**
+             * while dragging, difference between the left top corner of the screen => 0,0 position of mouse
+             */
+            clientOffset: monitor.getClientOffset(),
+            /**
+             *
+             */
+            differenceFromInitialOffset: monitor.getDifferenceFromInitialOffset(),
+            /**
+             *
+             */
+            sourceClientOffset: monitor.getSourceClientOffset(),
             isDragging: monitor.isDragging()
         };
     }
@@ -26,24 +56,17 @@ import NodeBase from './base/NodeBase.jsx';
      */
     class NodeDragLayer extends Component{
         render() {
-            var options = {
-                label: "GHOST",
-                sublabel: "in the SHELL",
-                width: 72,
-                height: 72,
-                x: 10,
-                y: 10,
-            };
-
             const { item, itemType, isDragging } = this.props;
-            const { initialOffset, currentOffset } = this.props;
+            const { initialClientOffset, initialSourceClientOffset, clientOffset, differenceFromInitialOffset,sourceClientOffset } = this.props;
 
             if (!isDragging) {
                 return null;
             }
 
             return (
-                <NodeBase x={currentOffset.x} y={currentOffset.y}/>
+                <NodeBase x={clientOffset.x - 120} y={clientOffset.y - 120} style={{
+                    opacity: isDragging ? 0.5 : 1
+                }}/>
             );
         }
     }
@@ -52,18 +75,30 @@ import NodeBase from './base/NodeBase.jsx';
      *
      * @type {{item: (*|boolean|string), itemType: (number|boolean|*), initialOffset: *, currentOffset: *, isDragging: *, snapToGrid: *}}
      */
-    NodeDragLayer. propTypes = {
+    NodeDragLayer.propTypes = {
         item: PropTypes.object,
         itemType: PropTypes.string,
-        initialOffset: PropTypes.shape({
-            x: PropTypes.number.isRequired,
-            y: PropTypes.number.isRequired
-        }),
-        currentOffset: PropTypes.shape({
-            x: PropTypes.number.isRequired,
-            y: PropTypes.number.isRequired
-        }),
-        isDragging: PropTypes.bool.isRequired,
+        // initialClientOffset: PropTypes.shape({
+        //     x: PropTypes.number.isRequired,
+        //     y: PropTypes.number.isRequired
+        // }),
+        // currentOffset: PropTypes.shape({
+        //     x: PropTypes.number.isRequired,
+        //     y: PropTypes.number.isRequired
+        // }),
+        // initialSourceClientOffset: PropTypes.shape({
+        //     x: PropTypes.number.isRequired,
+        //     y: PropTypes.number.isRequired
+        // }),
+        // differenceFromInitialOffset: PropTypes.shape({
+        //     x: PropTypes.number.isRequired,
+        //     y: PropTypes.number.isRequired
+        // }),
+        // sourceClientOffset: PropTypes.shape({
+        //     x: PropTypes.number.isRequired,
+        //     y: PropTypes.number.isRequired
+        // }),
+        // isDragging: PropTypes.bool.isRequired,
         // snapToGrid: PropTypes.bool.isRequired
     };
 

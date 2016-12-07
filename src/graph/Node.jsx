@@ -38,6 +38,9 @@ import nodeConfig, {config, nodeSize}from '../graph/node/NodeConfig.jsx';
         };
     }
 
+/**
+ *
+ */
 export class Node extends Component {
     constructor(props) {
         super(props)
@@ -72,7 +75,7 @@ export class Node extends Component {
         /**
          * @TODO valoriseer ce qui suit
          */
-        var nodeIcon = SVGTools.Text(this.props.innerRect);
+        var nodeIcon = SVGTools.Text(this.props.iconsvg);
         var nodeLabelBackground = SVGTools.Rectangle(this.props.nodeLabelbackground.textBackgroundRect);
         var labelText = this.props.data.label;
 
@@ -80,7 +83,6 @@ export class Node extends Component {
             <g className={this.props.main.className} transform={nodePosition} style={
                 {
                     cursor: 'pointer',
-                    opacity: isDragging ? 0.5 : 1
                 }
             }>
                 {borderRect}
@@ -133,17 +135,17 @@ export class Node extends Component {
     }
 }
 
-    /**
-     *
-     * @type {{label: *, isDragging: *, connectDragSource: *}}
-     */
-    Node.propTypes = {
-        label: PropTypes.string.isRequired,
+/**
+ *
+ * @type {{label: *, isDragging: *, connectDragSource: *}}
+ */
+Node.propTypes = {
+    label: PropTypes.string.isRequired,
 
-        // Injected by React DnD:
-        isDragging: PropTypes.bool.isRequired,
-        connectDragSource: PropTypes.func.isRequired,
-    };
+    // Injected by React DnD:
+    isDragging: PropTypes.bool.isRequired,
+    connectDragSource: PropTypes.func.isRequired,
+};
 
 
 

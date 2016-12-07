@@ -1,5 +1,9 @@
 /**
- * Created by frup68917 on 25/11/2016.
+ * Fonction de fusion d'objets
+ * @param src (object)
+ * @param dest (object)
+ * @param overwrite
+ * @returns {*}
  */
 export const merge = function(src, dest, overwrite) {
     // Do nothing if neither are true objects.

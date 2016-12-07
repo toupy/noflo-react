@@ -3,10 +3,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Editor from './Editor/Editor.jsx';
-import Node from './graph/Node.jsx';
+import EditorConfig from './Editor/EditorConfig.jsx';
 
-var editor = ReactDOM.render(
-    <Editor height="600" width="600" class="app-svg" data={data}/>,
+window.editor = ReactDOM.render(
+    <Editor class="app-svg" data={data}>
+        <EditorConfig width="600px" height="600px" backgroundColor="#666666">
+
+        </EditorConfig>
+    </Editor>,
     document.getElementById('app')
 );
 
