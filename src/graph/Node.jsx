@@ -49,7 +49,6 @@ export class Node extends Component {
     }
     render() {
         const { connectDragSource, isDragging, connectDragPreview } = this.props;
-        // connectDragPreview(<div>TEST</div>);
         /**
          * initialisation du module
          */
