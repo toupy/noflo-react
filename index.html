@@ -1,8 +1,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <script src="node_modules/react/dist/react.js"></script>
-    <script src="node_modules/react-dom/dist/react-dom.js"></script>
     <style>
         .the-graph-dark .node-border {
             fill: rgba(0, 0, 0, 0.5);
@@ -11,7 +9,7 @@
         }
 
         .the-graph-dark .node-rect {
-            fill: rgba(230, 238, 240, 0.94);
+            fill: rgba(201, 120, 72, 0.94);
             stroke: none;
         }
 
@@ -23,15 +21,13 @@
             text-anchor: middle;
             dominant-baseline: central;
         }
-
-
     </style>
-
 </head>
 <body>
 <div id="app" class="the-graph-dark"></div>
-<script type="text/javascript">
+<div id="todoList"></div>
 
+<script type="text/javascript">
     var data = {
         app: {
             appName: "Mon appli",
@@ -67,7 +63,6 @@
             }
         }
     }
-
 </script>
 <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
 </body>
