@@ -1,7 +1,6 @@
 
 import {combineReducers} from 'redux'
 import {ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters} from '../actions/actions.jsx'
-import {addGraphNode} from '../actions/nodeActions.jsx'
 const { SHOW_ALL } = VisibilityFilters
 
 /**
@@ -47,8 +46,6 @@ export const todoApp = combineReducers({
     visibilityFilter,
     todos
 })
-
-addGraphNode('graphNode')
 
 export default todoApp
 
