@@ -1,13 +1,13 @@
 "use strict";
 
-import React, { Component } from 'react';
-import HTML5Backend from 'react-dnd-html5-backend';
+import React, { Component } from 'react'
 import MouseBackEnd from 'react-dnd-mouse-backend'
-import { DragDropContext } from 'react-dnd';
+import { DragDropContext } from 'react-dnd'
 import EditorConfig from './EditorConfig.jsx'
-import { merge }from '../tools/Tools.jsx';
-import Node from '../graph/Node.jsx';
-import NodeDragLayer from '../graph/node/NodeDragLayer.jsx';
+import EditorView from './View/EditorView.jsx'
+import { addGraphNode} from '../Redux/actions/nodeActions.jsx'
+import VisibleNodes from '../Redux/Containers/VisibleNodes.jsx'
+import AddNodeButton from '../Redux/Components/AddNodeButton.jsx'
 
 
 export class Editor extends Component {
@@ -30,19 +30,7 @@ export class Editor extends Component {
             }
         });
         if(configComponent) {
-            /**
-             * merge les propriétés de possibleConfig dans les propriétés du composant
-             * @type {*}
-             */
             this.configComponent = configComponent;
-        }
-        /**
-         *
-         * @type {Array}
-         */
-        var nodes = this.props.data.app.graph.nodes;
-        this.state = {
-            nodes: nodes
         }
     }
 
@@ -54,6 +42,8 @@ export class Editor extends Component {
         return {
             width: 1024,
             height: 768,
+            top: 0,
+            left: 0,
             class: "app-svg",
             backgroundColor: "#0000000",
         };
@@ -67,74 +57,22 @@ export class Editor extends Component {
         const backgroundColor = (this.configComponent != undefined)?this.configComponent.props.backgroundColor:this.props.backgroundColor;
         const width = (this.configComponent != undefined)?this.configComponent.props.width:this.props.width;
         const height = (this.configComponent != undefined)?this.configComponent.props.height:this.props.height;
-
-        /**
-         *
-         * @type {number}
-         */
-        var i = 0;
-        var nodes = this.state.nodes.map(function (node) {
-            i++;
-            return (
-                <Node data={node} key={'node_' + i}/>
-            );
-        });
+        const top = (this.configComponent != undefined)?this.configComponent.props.top:this.props.top;
+        const left = (this.configComponent != undefined)?this.configComponent.props.left:this.props.left;
 
         return (
             <div>
-                <input type="button" value="AddNode" onClick={this.addNode.bind(this)}/>
-                <svg width={width} height={height} className={this.props.class} style={{
-                    backgroundColor: backgroundColor,
-                    position: 'absolute',
-                    left: '120px',
-                    top: '120px'
-                }}>
-                    {this.props.children}
-                    <g className="view" width="100%" height="100%">
-                        <g className="graph">
-                            <g className="nodes" id="nodes">
-                                {nodes}
-                                <NodeDragLayer/>
-                            </g>
-                        </g>
+                <AddNodeButton />
+                <EditorView width={width} height={height} className={this.props.class} style={{ backgroundColor: backgroundColor, position: 'absolute', left: left, top: top }}>
+                    <g className="graph">
+                        <VisibleNodes />
                     </g>
-                </svg>
+                </EditorView>
             </div>
         );
-    }
-
-    addNode() {
-        this.setState(function(prevState, props) {
-            nodes: prevState.nodes.push({
-                label: "Node ADD",
-                sublabel: "PR1 / it",
-                width: 72,
-                height: 72,
-                x: 10,
-                y: 10,
-            })
-        })
     }
 }
 
 Editor = DragDropContext(MouseBackEnd)(Editor);
-
-
-/**
- * @link(See https://discuss.reactjs.org/t/how-to-determine-what-type-of-component-a-child-is/3951)
- */
-// Editor.propTypes = {
-//     children: function(props, propName, componentName) {
-//         const prop = props[propName];
-//
-//         let error = null;
-//         React.Children.forEach(prop, function (child) {
-//             if(child.type === EditorConfig) {
-//                 console.log('Find EditorConfig');
-//                 console.log(child.props);
-//             }
-//         })
-//     }
-// };
 
 export default Editor;

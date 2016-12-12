@@ -18,6 +18,8 @@ export default class EditorConfig extends Component {
             style: {},
             width : 1024,
             height: 800,
+            top: 0,
+            left: 0,
             backgroundColor: "#000000"
         }
     }
