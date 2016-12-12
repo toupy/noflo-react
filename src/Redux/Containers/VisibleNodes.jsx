@@ -4,13 +4,17 @@ import { addGraphNode } from '../actions/nodeActions.jsx'
 
 const mapStateToProps = (state) => {
     return {
-        nodes: state.nodes
+        nodes: state.nodes,
+        otherNodes: state.nodes,
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddNodeClick: () => {
+        onNodeClick: () => {
+            dispatch(addGraphNode('LABEL'))
+        },
+        onNodeRightClick: () => {
             dispatch(addGraphNode('LABEL'))
         }
     }
@@ -21,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
  */
 const VisibleNodes = connect(
     mapStateToProps,
+    mapDispatchToProps
 )(Nodes);
 
 export default VisibleNodes

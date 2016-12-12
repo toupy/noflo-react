@@ -4,11 +4,11 @@ import { addGraphNode} from '../actions/nodeActions.jsx'
 
 let AddNodeButton = ({ dispatch }) => {
     return(
-        <div onClick={
+        <button onClick={
             e => {
                 dispatch(addGraphNode("Node"))
             }
-        } >Add a node</div>
+        } >Add a node</button>
     )
 };
 
