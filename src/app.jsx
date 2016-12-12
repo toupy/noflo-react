@@ -7,43 +7,35 @@ import EditorConfig from './Editor/EditorConfig.jsx';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import todoApp from './Redux/reducers/reducers.jsx'
-import App from './Redux/Components/App.jsx'
-import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './Redux/actions/actions.jsx';
+import VisibleNodes from './Redux/Containers/VisibleNodes.jsx'
+import AddNodeButton from './Redux/Components/AddNodeButton.jsx'
+import nodeApp from './Redux/reducers/Node/reducers.jsx'
+import { addGraphNode } from './Redux/actions/nodeActions.jsx';
 
-render(
-    <Editor class="app-svg" data={data}>
-        <EditorConfig width="600px" height="600px" backgroundColor="#666666">
-
-        </EditorConfig>
-    </Editor>,
-    document.getElementById('app')
-);
-
-
-let store = createStore(todoApp);
-
-// Log the initial state
-
-// Every time the state changes, log it
-// Note that subscribe() returns a function for unregistering the listener
-let unsubscribe = store.subscribe(() =>
-    console.log(store.getState())
+let storeGraph = createStore(nodeApp);
+let unsubscribeGraph = storeGraph.subscribe(() =>
+    console.log(storeGraph.getState())
 );
 
 // Dispatch some actions
-store.dispatch(addTodo('Learn about actions'))
-store.dispatch(addTodo('Learn about reducers'))
-store.dispatch(addTodo('Learn about store'))
-store.dispatch(toggleTodo(0))
-store.dispatch(toggleTodo(1))
-store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+storeGraph.dispatch(addGraphNode('NODE TEST'));
+storeGraph.dispatch(addGraphNode('NODE TEST1'));
+storeGraph.dispatch(addGraphNode('NODE TEST2'));
 
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('todoList')
-)
+    <Provider store={storeGraph}>
+        <Editor class="app-svg">
+            <EditorConfig
+                width="1000px" height="600px"
+                top="120px" left="220px"
+                backgroundColor="#666666"
+                />
+            <AddNodeButton />
+        </Editor>
+    </Provider>
+,
+    document.getElementById('app')
+);
+
 
 

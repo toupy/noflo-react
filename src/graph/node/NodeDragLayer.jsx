@@ -80,7 +80,7 @@ import NodeBase from './base/NodeBase.jsx';
 
             var mousePositionOnElementWhenFirstClick = this.__getInitialElementPointerPosition(initialClientOffset, initialSourceClientOffset);
             return (
-                <NodeBase x={clientOffset.x - mousePositionOnElementWhenFirstClick.x - 120} y={clientOffset.y - mousePositionOnElementWhenFirstClick.y - 120} style={{
+                <NodeBase x={clientOffset.x - mousePositionOnElementWhenFirstClick.x - 220} y={clientOffset.y - mousePositionOnElementWhenFirstClick.y - 120} style={{
                     opacity: isDragging ? 0.5 : 1
                 }}/>
             );
