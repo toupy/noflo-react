@@ -83,7 +83,7 @@ export class Node extends Component {
                 {
                     cursor: 'pointer',
                 }
-            }>
+            } onClick={this.props.onClick} >
                 {borderRect}
                 {backgroundRect}
                 {innerRect}
@@ -143,7 +143,9 @@ Node.propTypes = {
 
     // Injected by React DnD:
     isDragging: PropTypes.bool.isRequired,
+    isSelected: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 

@@ -1,18 +1,17 @@
 import { connect } from 'react-redux'
 import Nodes from '../Components/SVG/Nodes.jsx'
-import { addGraphNode } from '../actions/nodeActions.jsx'
+import { addGraphNode, selectGraphNode } from '../actions/nodeActions.jsx'
 
 const mapStateToProps = (state) => {
     return {
-        nodes: state.nodes,
-        otherNodes: state.nodes,
+        nodes: state.nodes
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onNodeClick: () => {
-            dispatch(addGraphNode('LABEL'))
+        onNodeClick: (id) => {
+            dispatch(selectGraphNode(id))
         },
         onNodeRightClick: () => {
             dispatch(addGraphNode('LABEL'))
