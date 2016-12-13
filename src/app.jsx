@@ -7,10 +7,8 @@ import EditorConfig from './Editor/EditorConfig.jsx';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import VisibleNodes from './Redux/Containers/VisibleNodes.jsx'
-import AddNodeButton from './Redux/Components/AddNodeButton.jsx'
 import nodeApp from './Redux/reducers/Node/reducers.jsx'
-import { addGraphNode } from './Redux/actions/nodeActions.jsx';
+import { addGraphNode, selectGraphNode } from './Redux/actions/nodeActions.jsx';
 
 let storeGraph = createStore(nodeApp);
 let unsubscribeGraph = storeGraph.subscribe(() =>
@@ -21,6 +19,7 @@ let unsubscribeGraph = storeGraph.subscribe(() =>
 storeGraph.dispatch(addGraphNode('NODE TEST'));
 storeGraph.dispatch(addGraphNode('NODE TEST1'));
 storeGraph.dispatch(addGraphNode('NODE TEST2'));
+storeGraph.dispatch(selectGraphNode(2));
 
 render(
     <Provider store={storeGraph}>
@@ -30,7 +29,6 @@ render(
                 top="120px" left="220px"
                 backgroundColor="#666666"
                 />
-            <AddNodeButton />
         </Editor>
     </Provider>
 ,
