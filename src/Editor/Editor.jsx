@@ -5,7 +5,7 @@ import MouseBackEnd from 'react-dnd-mouse-backend'
 import { DragDropContext } from 'react-dnd'
 import EditorConfig from './EditorConfig.jsx'
 import EditorView from './View/EditorView.jsx'
-import { addGraphNode} from '../Redux/actions/nodeActions.jsx'
+import SelectedNode from '../Redux/Containers/SelectedNodeContainer.jsx'
 import VisibleNodes from '../Redux/Containers/VisibleNodes.jsx'
 import AddNodeButton from '../Redux/Components/AddNodeButton.jsx'
 
@@ -63,6 +63,7 @@ export class Editor extends Component {
         return (
             <div>
                 <AddNodeButton />
+                <SelectedNode />
                 <EditorView width={width} height={height} className={this.props.class} style={{ backgroundColor: backgroundColor, position: 'absolute', left: left, top: top }}>
                     <g className="graph">
                         <VisibleNodes />
