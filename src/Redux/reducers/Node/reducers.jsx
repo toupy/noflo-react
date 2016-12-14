@@ -14,24 +14,25 @@ function nodes( state = [], action) {
                 ...state,
                 {
                     label: action.label,
-                    sublabel: "PR1 / it",
+                    sublabel: action.sublabel,
                     width: 72,
                     height: 72,
-                    x: 10,
-                    y: 10,
+                    x: action.x,
+                    y: action.y,
                     id: action.id,
                     selected: false,
+                    ports: []
                 }
             ];
         case SELECT_GRAPH_NODE:
-            return state.map((node, index) => {
+            var node =  state.map((node, index) => {
                 if(index === action.id) {
                     return Object.assign({}, node, {
-                        selected: !node.selected
+                        selected: true
                     })
                 }
-                return node
             });
+            return node
         default:
             return state
     }
@@ -40,7 +41,7 @@ function nodes( state = [], action) {
 function selection( state = 0, action ) {
     switch (action.type) {
         case SELECT_GRAPH_NODE:
-            return action.id
+           return action.id;
         default:
             return state
     }
@@ -48,7 +49,7 @@ function selection( state = 0, action ) {
 
 export const nodeApp = combineReducers({
     nodes: nodes,
-    selectedNode: selection
+    selectedNodeId: selection
 });
 
 export default nodeApp
