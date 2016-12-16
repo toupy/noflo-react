@@ -7,10 +7,11 @@ import EditorConfig from './Editor/EditorConfig.jsx';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import nodeApp from './Redux/reducers/Node/reducers.jsx'
-import { addGraphNode, selectGraphNode, addNodePort } from './Redux/actions/nodeActions.jsx';
+import editorApp from './Redux/reducers/index.jsx'
+import { addGraphNode, selectGraphNode } from './Redux/actions/nodeActions.jsx';
+import { addNodePort } from './Redux/actions/portActions.jsx';
 
-let storeGraph = createStore(nodeApp);
+let storeGraph = createStore( editorApp );
 let unsubscribeGraph = storeGraph.subscribe(() =>
     console.log(storeGraph.getState())
 );
@@ -20,7 +21,7 @@ storeGraph.dispatch(addGraphNode('NODE TEST', 'SubLabel', 10, 10));
 storeGraph.dispatch(addGraphNode('NODE TEST1', 'SubLabel', 10, 200));
 var id = storeGraph.dispatch(addGraphNode('NODE TEST2', 'SubLabel', 200, 200));
 var id_port = storeGraph.dispatch(addNodePort(id));
-// storeGraph.dispatch(selectGraphNode(2));
+storeGraph.dispatch(selectGraphNode(2));
 
 render(
     <Provider store={storeGraph}>
