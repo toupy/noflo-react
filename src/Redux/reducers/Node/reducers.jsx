@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import { ADD_GRAPH_NODE, SELECT_GRAPH_NODE } from '../../actions/nodeActions.jsx'
+import _ from 'lodash'
 
 /**
  *
@@ -25,19 +26,26 @@ function nodes( state = [], action) {
                 }
             ];
         case SELECT_GRAPH_NODE:
-            var node =  state.map((node, index) => {
-                if(index === action.id) {
-                    return Object.assign({}, node, {
+            return state.map(t => {
+                if(t.id === action.id) {
+                    return Object.assign({}, t, {
                         selected: true
                     })
+                }else{
+                    return t;
                 }
             });
-            return node
+
         default:
             return state
     }
 }
-
+/**
+ *
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 function selection( state = 0, action ) {
     switch (action.type) {
         case SELECT_GRAPH_NODE:
