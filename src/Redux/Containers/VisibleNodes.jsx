@@ -4,7 +4,7 @@ import { addGraphNode, selectGraphNode } from '../actions/nodeActions.jsx'
 
 const mapStateToProps = (state) => {
     return {
-        nodes: state.nodes
+        nodes: state.nodes.nodes
     }
 };
 
