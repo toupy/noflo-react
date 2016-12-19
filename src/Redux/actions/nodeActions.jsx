@@ -16,7 +16,6 @@ export function addGraphNode(label,sublabel, posx = 10, posy = 10, input_type = 
         type: ADD_GRAPH_NODE,
         label: label,
         sublabel: sublabel,
-        input_type: input_type,
         x: posx,
         y: posy,
         id: nextNodeId++
