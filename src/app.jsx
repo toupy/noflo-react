@@ -19,8 +19,10 @@ let unsubscribeGraph = storeGraph.subscribe(() =>
 // Dispatch some actions
 storeGraph.dispatch(addGraphNode('NODE TEST', 'SubLabel', 10, 10));
 storeGraph.dispatch(addGraphNode('NODE TEST1', 'SubLabel', 10, 200));
-var id = storeGraph.dispatch(addGraphNode('NODE TEST2', 'SubLabel', 200, 200));
-var id_port = storeGraph.dispatch(addNodePort(id));
+var node_2 = storeGraph.dispatch(addGraphNode('NODE TEST2', 'SubLabel', 200, 200));
+var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'port', 'IN'));
+var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreReducer', 'IN'));
+var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreAppMobile', 'OUT'));
 storeGraph.dispatch(selectGraphNode(2));
 
 render(
