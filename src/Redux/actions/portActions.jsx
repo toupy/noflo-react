@@ -12,11 +12,13 @@ export const SELECT_NODE_PORT = 'SELECT_NODE_PORT';
  * @param text
  * @returns {{type: string, text: *}}
  */
-export function addNodePort ( label ) {
+export function addNodePort ( id, label, input_type = 'IN' ) {
     return {
         type: ADD_NODE_PORT,
         label: label,
-        id: nextPortId++
+        id: nextPortId++,
+        node_id: id,
+        input_type: input_type
     }
 }
 /**

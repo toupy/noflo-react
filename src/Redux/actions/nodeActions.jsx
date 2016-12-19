@@ -11,11 +11,12 @@ export const SELECT_GRAPH_NODE = 'SELECT_GRAPH_NODE';
  * @param text
  * @returns {{type: string, text: *}}
  */
-export function addGraphNode(label,sublabel, posx = 10, posy = 10) {
+export function addGraphNode(label,sublabel, posx = 10, posy = 10, input_type = 'IN') {
     return {
         type: ADD_GRAPH_NODE,
         label: label,
         sublabel: sublabel,
+        input_type: input_type,
         x: posx,
         y: posy,
         id: nextNodeId++
