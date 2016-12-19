@@ -16,7 +16,9 @@ function ports( state = [], action) {
                 {
                     label: action.label,
                     id: action.id,
+                    node_id: action.node_id,
                     selected: false,
+                    input_type: action.input_type
                 }
             ];
         default:
