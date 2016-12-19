@@ -1,12 +1,11 @@
 "use strict";
 
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../ItemTypes';
 import SVGTools from '../tools/factories/svg/SVGFactory.jsx';
-import Tools, {merge}from '../tools/Tools.jsx';
-import nodeConfig, {config, nodeSize}from '../graph/node/NodeConfig.jsx';
+import { merge }from '../tools/Tools.jsx';
+import { config, nodeSize }from '../graph/node/NodeConfig.jsx';
 
 
 
