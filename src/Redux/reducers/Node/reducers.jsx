@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import { ADD_GRAPH_NODE, SELECT_GRAPH_NODE } from '../../actions/nodeActions.jsx'
+import { ADD_NODE_PORT } from '../../actions/portActions.jsx'
 import _ from 'lodash'
 
 /**
@@ -25,6 +26,7 @@ function nodes( state = [], action) {
                     ports: []
                 }
             ];
+
         case SELECT_GRAPH_NODE:
             return state.map(t => {
                 if(t.id === action.id) {
@@ -35,6 +37,27 @@ function nodes( state = [], action) {
                     return t;
                 }
             });
+
+        case ADD_NODE_PORT:
+            return state.map( t => {
+                if(t.id === action.node_id) {
+                    return Object.assign({}, t, {
+                        ports: [
+                            ...t.ports,
+                            {
+                                label: action.label,
+                                id: action.id,
+                                node_id: action.node_id,
+                                selected: false,
+                                input_type: action.input_type
+                            }
+                        ]
+                    })
+                }else{
+                    return t;
+                }
+            });
+
 
         default:
             return state
