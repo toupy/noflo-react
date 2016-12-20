@@ -77,6 +77,19 @@ export class Node extends Component {
         var nodeLabelBackground = SVGTools.Rectangle(this.props.nodeLabelbackground.textBackgroundRect);
         var labelText = this.props.data.label;
 
+
+        var inports = this.props.data.ports.filter( t => {
+            return t.input_type == 'IN'
+        });
+        var input_counter = inports.length + 1;
+        var input_space = input_counter / nodeSize.defaultNodeSize
+        var outports = this.props.data.ports.filter( t => {
+            return t.input_type == 'OUT'
+        });
+        var output_counter = outports.length + 1;
+        var output_space = input_counter / nodeSize.defaultNodeSize
+
+
         return connectDragSource(
             <g className={this.props.main.className} transform={nodePosition} style={
                 {
@@ -95,6 +108,12 @@ export class Node extends Component {
                     >
                         {labelText}
                     </SVGTools.Text>
+                    <g className="inports">
+
+                    </g>
+                    <g className="outports">
+
+                    </g>
                 </g>
             </g>
         );
