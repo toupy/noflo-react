@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import Editor from './Editor/Editor.jsx';
-import EditorConfig from './Editor/EditorConfig.jsx';
+import Editor from './Components/Editor/Editor.jsx';
+import EditorConfig from './Components/Editor/EditorConfig.jsx';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import editorApp from './Redux/reducers/index.jsx'
-import { addGraphNode, selectGraphNode } from './Redux/actions/nodeActions.jsx';
-import { addNodePort } from './Redux/actions/portActions.jsx';
+import editorApp from './reducers/index.jsx'
+import { addGraphNode, selectGraphNode } from './actions/nodeActions.jsx';
+import { addNodePort } from './actions/portActions.jsx';
 
 let storeGraph = createStore( editorApp );
 let unsubscribeGraph = storeGraph.subscribe(() =>

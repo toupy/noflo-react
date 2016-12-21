@@ -1,9 +1,9 @@
 "use strict";
 
 import React, { Component, PropTypes } from 'react';
-import SVGTools from '../../../tools/factories/svg/SVGFactory.jsx';
-import Tools, {merge}from '../../../tools/Tools.jsx';
-import nodeConfig, {config, nodeSize}from '../../../graph/node/NodeConfig.jsx';
+import SVGTools from '../../../../tools/factories/svg/SVGFactory.jsx';
+import Tools, {merge}from '../../../../tools/Tools.jsx';
+import nodeConfig, {config, nodeSize}from '../../../../Components/graph/node/NodeConfig.jsx';
 
 export default class NodeBase extends Component {
 

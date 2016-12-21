@@ -2,9 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
-import ItemTypes from '../ItemTypes';
-import SVGTools from '../tools/factories/svg/SVGFactory.jsx';
-import { merge }from '../tools/Tools.jsx';
+import ItemTypes from '../../ItemTypes';
+import SVGTools from '../../tools/factories/svg/SVGFactory.jsx';
+import { merge }from '../../tools/Tools.jsx';
 import { config, nodeSize }from '../graph/node/NodeConfig.jsx';
 
 

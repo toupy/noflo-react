@@ -5,9 +5,9 @@ import MouseBackEnd from 'react-dnd-mouse-backend'
 import { DragDropContext } from 'react-dnd'
 import EditorConfig from './EditorConfig.jsx'
 import EditorView from './View/EditorView.jsx'
-import SelectedNode from '../Redux/Containers/SelectedNodeContainer.jsx'
-import VisibleNodes from '../Redux/Containers/VisibleNodes.jsx'
-import AddNodeButton from '../Redux/Components/AddNodeButton.jsx'
+import SelectedNode from '../../Containers/SelectedNodeContainer.jsx'
+import VisibleNodes from '../../Containers/VisibleNodes.jsx'
+import AddNodeButton from '../../Components/AddNodeButton.jsx'
 
 
 export class Editor extends Component {
