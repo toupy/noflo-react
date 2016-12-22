@@ -22,7 +22,9 @@ storeGraph.dispatch(addGraphNode('NODE TEST1', 'SubLabel', 10, 200));
 var node_2 = storeGraph.dispatch(addGraphNode('NODE TEST2', 'SubLabel', 200, 200));
 var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'port', 'IN'));
 var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreReducer', 'IN'));
+var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreActionCreator', 'IN'));
 var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreAppMobile', 'OUT'));
+var id_port = storeGraph.dispatch(addNodePort(node_2.id, 'coreOuputCrawler', 'OUT'));
 storeGraph.dispatch(selectGraphNode(2));
 
 render(
