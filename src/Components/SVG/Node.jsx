@@ -77,18 +77,16 @@ export class Node extends Component {
         var nodeLabelBackground = SVGTools.Rectangle(this.props.nodeLabelbackground.textBackgroundRect);
         var labelText = this.props.data.label;
 
-
         var inports = this.props.data.ports.filter( t => {
             return t.input_type == 'IN'
         });
-        var input_counter = inports.length + 1;
-        var input_space = input_counter / nodeSize.defaultNodeSize
+        var inports_counter = inports.length + 1;
+        var input_space = nodeSize.defaultNodeSize / inports_counter ;
         var outports = this.props.data.ports.filter( t => {
             return t.input_type == 'OUT'
         });
-        var output_counter = outports.length + 1;
-        var output_space = input_counter / nodeSize.defaultNodeSize
-
+        var outports_counter = outports.length + 1;
+        var output_space = nodeSize.defaultNodeSize / outports_counter;
 
         return connectDragSource(
             <g className={this.props.main.className} transform={nodePosition} style={
@@ -96,8 +94,8 @@ export class Node extends Component {
                     cursor: 'pointer',
                 }
             } onClick={this.props.onClick} >
-                {borderRect}
                 {backgroundRect}
+                {borderRect}
                 {innerRect}
                 {nodeIcon}
                 <g className="node-label-bg">
@@ -106,16 +104,27 @@ export class Node extends Component {
                         x={this.props.nodeLabelbackground.nodeLabel.x}
                         y={this.props.nodeLabelbackground.nodeLabel.y}
                     >
-                        {labelText}
+                    {labelText}
                     </SVGTools.Text>
                     <g className="inports">
-
+                        {inports.map( (port, index) => {
+                            const ypos = input_space * (index + 1);
+                          return (
+                              <circle className="node-ports" key={port.id} r="3" cy={ypos} cx="-2"/>
+                          )
+                        })}
                     </g>
                     <g className="outports">
-
+                        {outports.map( (port, index) => {
+                            const ypos = output_space * (index + 1);
+                            return (
+                                <circle className="node-ports" key={port.id} r="3" cy={ypos} cx="74"/>
+                            )
+                        })}
                     </g>
                 </g>
             </g>
+
         );
     }
 
