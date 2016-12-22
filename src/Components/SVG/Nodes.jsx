@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Node from '../../Components/graph/Node.jsx'
+import Node from './Node.jsx'
 import NodeDragLayer from '../../Components/graph/node/NodeDragLayer.jsx';
 
 const Nodes = ({ nodes, otherNodes, onNodeClick, onNodeRightClick }) =>
